@@ -1,0 +1,55 @@
+public class T3 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int i, a, temp$0, temp$1, temp$2, temp$3, temp$4, temp$5, temp$6;
+
+        args := @parameter0: java.lang.String[];
+        temp$0 = 0;
+        i = temp$0;
+
+     label0:
+        nop;
+        if i < 100 goto label1;
+
+        goto label4;
+
+     label1:
+        nop;
+        temp$1 = i;
+        temp$2 = temp$1 + 2;
+        i = temp$2;
+        if i < 20 goto label2;
+
+        goto label3;
+
+     label2:
+        nop;
+        temp$3 = 1;
+        a = temp$3;
+
+     label3:
+        nop;
+        temp$4 = i;
+        temp$5 = temp$4 + 1;
+        i = temp$5;
+        goto label0;
+
+     label4:
+        nop;
+        temp$6 = 0;
+        a = temp$6;
+        return;
+    }
+
+    public void <init>()
+    {
+        T3 this;
+
+        this := @this: T3;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

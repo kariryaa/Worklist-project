@@ -1,0 +1,66 @@
+public class T5 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        java.util.Scanner scan, temp$0;
+        java.io.InputStream temp$1;
+        int j, temp$2, temp$6, temp$7, temp$8;
+        java.io.PrintStream temp$3;
+        java.lang.StringBuffer temp$4;
+        java.lang.String temp$5;
+
+        args := @parameter0: java.lang.String[];
+        temp$0 = new java.util.Scanner;
+        temp$1 = <java.lang.System: java.io.InputStream in>;
+        specialinvoke temp$0.<java.util.Scanner: void <init>(java.io.InputStream)>(temp$1);
+        scan = temp$0;
+        temp$2 = virtualinvoke scan.<java.util.Scanner: int nextInt()>();
+        j = temp$2;
+        temp$3 = <java.lang.System: java.io.PrintStream out>;
+        temp$4 = new java.lang.StringBuffer;
+        specialinvoke temp$4.<java.lang.StringBuffer: void <init>()>();
+        virtualinvoke temp$4.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.Object)>("j is ");
+        virtualinvoke temp$4.<java.lang.StringBuffer: java.lang.StringBuffer append(int)>(j);
+        temp$5 = virtualinvoke temp$4.<java.lang.StringBuffer: java.lang.String toString()>();
+        virtualinvoke temp$3.<java.io.PrintStream: void println(java.lang.String)>(temp$5);
+
+     label0:
+        nop;
+        goto label1;
+
+     label1:
+        nop;
+        if j > 0 goto label2;
+
+        goto label3;
+
+     label2:
+        nop;
+        temp$6 = j;
+        temp$7 = temp$6 + 10;
+        j = temp$7;
+        goto label4;
+
+     label3:
+        nop;
+        temp$8 = j - 10;
+        j = temp$8;
+
+     label4:
+        nop;
+        goto label0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        T5 this;
+
+        this := @this: T5;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

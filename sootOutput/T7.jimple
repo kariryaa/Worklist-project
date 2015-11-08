@@ -1,0 +1,70 @@
+public class T7 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int x, y, temp$0, temp$1, temp$2, temp$3, temp$4, temp$5, temp$6;
+
+        args := @parameter0: java.lang.String[];
+        x = 0;
+        y = 0;
+
+     label0:
+        nop;
+        if x <= 99 goto label1;
+
+        goto label5;
+
+     label1:
+        nop;
+        if x <= 49 goto label2;
+
+        goto label3;
+
+     label2:
+        nop;
+        temp$0 = x;
+        temp$1 = temp$0 + 1;
+        x = temp$1;
+        temp$2 = y;
+        temp$3 = temp$2 + 1;
+        y = temp$3;
+        goto label4;
+
+     label3:
+        nop;
+        temp$4 = x;
+        temp$5 = temp$4 + 1;
+        x = temp$5;
+        temp$6 = y - 1;
+        y = temp$6;
+
+     label4:
+        nop;
+        goto label0;
+
+     label5:
+        nop;
+        if y < 0 goto label6;
+
+        goto label7;
+
+     label6:
+        nop;
+        return;
+
+     label7:
+        nop;
+        return;
+    }
+
+    public void <init>()
+    {
+        T7 this;
+
+        this := @this: T7;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

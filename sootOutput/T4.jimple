@@ -1,0 +1,35 @@
+public class T4 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int i, temp$0, temp$1, temp$2;
+
+        args := @parameter0: java.lang.String[];
+        temp$0 = 0;
+        i = temp$0;
+
+     label0:
+        nop;
+        goto label1;
+
+     label1:
+        nop;
+        temp$1 = i;
+        temp$2 = temp$1 + 1;
+        i = temp$2;
+        goto label0;
+
+        return;
+    }
+
+    public void <init>()
+    {
+        T4 this;
+
+        this := @this: T4;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

@@ -1,0 +1,52 @@
+public class T2 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int a, b, c, d, i, temp$0, temp$1, temp$2, temp$3, temp$4, temp$5, temp$6, temp$7, temp$8, temp$9, temp$10, temp$11;
+
+        args := @parameter0: java.lang.String[];
+        temp$0 = 0;
+        i = temp$0;
+        temp$1 = 1;
+        a = temp$1;
+        temp$2 = 2;
+        b = temp$2;
+        temp$3 = 3;
+        c = temp$3;
+        temp$4 = 4;
+        d = temp$4;
+        if i < 100 goto label0;
+
+        goto label1;
+
+     label0:
+        nop;
+        temp$5 = i;
+        temp$6 = temp$5 + 3;
+        a = temp$6;
+        temp$7 = a * 2;
+        b = temp$7;
+        temp$8 = b / 3;
+        c = temp$8;
+        temp$9 = d - 4;
+        d = temp$9;
+
+     label1:
+        nop;
+        temp$10 = i;
+        temp$11 = temp$10 + 1;
+        i = temp$11;
+        return;
+    }
+
+    public void <init>()
+    {
+        T2 this;
+
+        this := @this: T2;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

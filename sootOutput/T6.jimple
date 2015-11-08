@@ -1,0 +1,48 @@
+public class T6 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int x, temp$0, temp$1;
+
+        args := @parameter0: java.lang.String[];
+        x = 1;
+
+     label0:
+        nop;
+        if x < 1000 goto label1;
+
+        goto label4;
+
+     label1:
+        nop;
+        temp$0 = x;
+        temp$1 = temp$0 + 1;
+        x = temp$1;
+        if x > 20 goto label2;
+
+        goto label3;
+
+     label2:
+        nop;
+        goto label4;
+
+     label3:
+        nop;
+        goto label0;
+
+     label4:
+        nop;
+        return;
+    }
+
+    public void <init>()
+    {
+        T6 this;
+
+        this := @this: T6;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

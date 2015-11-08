@@ -1,0 +1,41 @@
+public class T1 extends java.lang.Object
+{
+
+    public static void main(java.lang.String[])
+    {
+        java.lang.String[] args;
+        int i, j, temp$0, temp$1, temp$2, temp$3;
+
+        args := @parameter0: java.lang.String[];
+        temp$0 = 0;
+        i = temp$0;
+
+     label0:
+        nop;
+        if i < 10 goto label1;
+
+        goto label2;
+
+     label1:
+        nop;
+        temp$1 = i;
+        temp$2 = temp$1 + 1;
+        i = temp$2;
+        goto label0;
+
+     label2:
+        nop;
+        temp$3 = 5;
+        j = temp$3;
+        return;
+    }
+
+    public void <init>()
+    {
+        T1 this;
+
+        this := @this: T1;
+        specialinvoke this.<java.lang.Object: void <init>()>();
+        return;
+    }
+}

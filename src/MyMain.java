@@ -27,7 +27,6 @@ public class MyMain
 	
 	private static boolean quit=false;
 	private static List<String> list=new ArrayList<String>();
-	private static Worklist obj;
 	private static String className;
 	
 	public static void main(String[] args) 
@@ -60,6 +59,16 @@ public class MyMain
 				case 1:					//User chooses className correctly.
 			}
 			
+			print_algo_menu();
+			int secondInput = userInputAlgo();
+			
+			switch(secondInput)
+			{
+				case -1:				//Wrong Input
+					continue;
+				case 0:					//User wants to quit
+					continue;
+			}
 			//Starting the analysis for all methods of the selected class.
 			
 			SootClass c = Scene.v().loadClassAndSupport(className);
@@ -86,13 +95,23 @@ public class MyMain
 				//This line does the complete Interval Domain analysis.
 				//new Test(ug);
 				
+				switch(secondInput)
+				{
+					case 1:
+						new OldRoundRobinWithOldOperator(ug);break;
+					case 2:
+						new OldRoundRobinWithNewOperator(ug);break;
+					case 3:
+						new StructuredRoundRobin(ug);break;
+					case 4:
+						new OldWorklistWithOldOperator(ug);break;
+					case 5:
+						new OldWorklistWithNewOperator(ug);break;
+					case 6:
+						new StructuredWorklist(ug);break;
+					
+				}
 				
-				//new OldRoundRobinWithNewOperator(ug);
-				//new OldRoundRobinWithOldOperator(ug);
-				//new StructuredRoundRobin(ug);
-				//new OldWorklistWithNewOperator(ug);
-				new StructuredWorklist(ug);
-				//new OldWorklistWithOldOperator(ug);
 			}
 			
 		}			
@@ -130,6 +149,31 @@ public class MyMain
 			return 1;
 		}
 	}
+	
+	static int userInputAlgo()
+	{
+		Scanner in = new Scanner(System.in);
+		int choice=in.nextInt();
+		//Setting "Algo name" based on user choice
+		
+		if(choice<0||choice>6)
+		{
+			System.out.println("Wrong Choice..Enter again\n\n");
+			return -1;	
+		}
+		
+		else if(choice==0)
+		{
+			quit=true;
+			in.close();
+			return 0;
+		}
+		
+		else
+		{
+			return choice;
+		}
+	}
 		
 	static void print_menu()
 	{
@@ -139,6 +183,24 @@ public class MyMain
 		
 		for(int i=0;i<list.size();i++)
 			System.out.println(i+1 + ". " + list.get(i));
+		
+	}
+	
+	static void print_algo_menu()
+	{
+		
+		System.out.println("==========================================");
+		System.out.println("Choose the name of the algorithm : ");
+		System.out.println("(Press '0' to exit)\n");
+		
+		int i=1;
+		System.out.println(i++ + ". " + "Standard Round Robin with 2 phase Widening and Narrowing");
+		System.out.println(i++ + ". " + "Standard Round Robin with new operator");
+		System.out.println(i++ + ". " + "Structured Round Robin with new operator");
+		System.out.println(i++ + ". " + "Standard Worklist with 2 phase Widening and Narrowing");
+		System.out.println(i++ + ". " + "Standard Worklist with new operator");
+		System.out.println(i++ + ". " + "Structured Worklist with new operator");
+		
 		
 	}
 	

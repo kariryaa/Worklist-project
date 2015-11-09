@@ -38,8 +38,9 @@ public class OldWorklistWithOldOperator
 	{
 		init(inUg);
 		phase = 1;
+		System.out.println("\n\n\n**********************WIDENING PHASE**********************\n\n");
 		doAnalysis(ug);
-		System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NARROWING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n\n");
+		System.out.println("\n\n\n**********************NARROWING PHASE**********************\n\n");
 		initNarrowing(ug);
 		phase = 2;
 		doAnalysis(ug);
@@ -151,11 +152,11 @@ public class OldWorklistWithOldOperator
 			
 			tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
 			
-			printAll(oldInteralSetIN);
+			//printAll(oldInteralSetIN);
 			
 			copy(tempIntervalSet,intervalSetIN);
 			
-			printAll(intervalSetIN);
+			//printAll(intervalSetIN);
 			
 			inMap.put(currentHashCode, intervalSetIN);
 			
@@ -263,10 +264,10 @@ public class OldWorklistWithOldOperator
 			{
 				replaceInterval1(SIarr[i],out1);
 			}
-			System.out.println("out1");
-			printAll(out1);
-			System.out.println("out2");
-			printAll(out2);
+			//System.out.println("out1");
+			//printAll(out1);
+			//System.out.println("out2");
+			//printAll(out2);
 		}
 		
 		if(unit instanceof AssignStmt)
@@ -294,7 +295,7 @@ public class OldWorklistWithOldOperator
 				String[] operands = getOperands(unitString,numop);
 				SimpleInterval temp;
 				
-				lhsSI.print();
+				//lhsSI.print();
 				
 				
 				switch(numop)
@@ -367,11 +368,11 @@ public class OldWorklistWithOldOperator
 				{
 					if(currentVisitCount==1)
 					{
-						System.out.println("Applying narrowing...........");
-						lhsSI.print();
+						//System.out.println("Applying narrowing...........");
+						//lhsSI.print();
 						lhsSI.narrowing(lhsSiCopy);
-						lhsSI.print();
-						System.out.println("Narrowing applied...........");
+						//lhsSI.print();
+						//System.out.println("Narrowing applied...........");
 					}
 				}
 			}
@@ -379,7 +380,7 @@ public class OldWorklistWithOldOperator
 			copy(intervalSet,out2);
 		}
 		
-		System.out.println("Result of :- "+unit.toString());
+		System.out.println("\nResult of Unit : "+unit.toString());
 		printAll(intervalSet);
 		System.out.println("$###############################$");
 	}
@@ -923,6 +924,6 @@ public class OldWorklistWithOldOperator
 		{
 			((SimpleInterval)it.next()).print();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 }

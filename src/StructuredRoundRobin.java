@@ -173,11 +173,11 @@ public class StructuredRoundRobin
 		
 		tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
 		
-		printAll(oldInteralSetIN);
+		//printAll(oldInteralSetIN);
 		
 		copy(tempIntervalSet,intervalSetIN);
 		
-		printAll(intervalSetIN);
+		//printAll(intervalSetIN);
 		
 		inMap.put(currentHashCode, intervalSetIN);
 		
@@ -256,10 +256,10 @@ public class StructuredRoundRobin
 			{
 				replaceInterval1(SIarr[i],out1);
 			}
-			System.out.println("out1");
-			printAll(out1);
-			System.out.println("out2");
-			printAll(out2);
+			//System.out.println("out1");
+			//printAll(out1);
+			//System.out.println("out2");
+			//printAll(out2);
 		}
 		
 		if(unit instanceof AssignStmt)
@@ -287,7 +287,7 @@ public class StructuredRoundRobin
 				String[] operands = getOperands(unitString,numop);
 				SimpleInterval temp;
 				
-				lhsSI.print();
+				//lhsSI.print();
 				
 				
 				switch(numop)
@@ -392,7 +392,7 @@ public class StructuredRoundRobin
 			copy(intervalSet,out2);
 		}
 		
-		System.out.println("Result of :- "+unit.toString());
+		System.out.println("\nResult of Unit : "+unit.toString());
 		printAll(intervalSet);
 		System.out.println("$###############################$");
 	}
@@ -936,6 +936,6 @@ public class StructuredRoundRobin
 		{
 			((SimpleInterval)it.next()).print();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 }

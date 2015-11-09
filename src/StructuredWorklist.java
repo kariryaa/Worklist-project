@@ -153,11 +153,11 @@ public class StructuredWorklist
 			
 			tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
 			
-			printAll(oldInteralSetIN);
+			//printAll(oldInteralSetIN);
 			
 			copy(tempIntervalSet,intervalSetIN);
 			
-			printAll(intervalSetIN);
+			//printAll(intervalSetIN);
 			
 			inMap.put(currentHashCode, intervalSetIN);
 			
@@ -273,10 +273,10 @@ public class StructuredWorklist
 			{
 				replaceInterval1(SIarr[i],out1);
 			}
-			System.out.println("out1");
-			printAll(out1);
-			System.out.println("out2");
-			printAll(out2);
+			//System.out.println("out1");
+			//printAll(out1);
+			//System.out.println("out2");
+			//printAll(out2);
 		}
 		
 		if(unit instanceof AssignStmt)
@@ -304,7 +304,7 @@ public class StructuredWorklist
 				String[] operands = getOperands(unitString,numop);
 				SimpleInterval temp;
 				
-				lhsSI.print();
+				//lhsSI.print();
 				
 				
 				switch(numop)
@@ -368,19 +368,19 @@ public class StructuredWorklist
 				Integer currentVisitCount = visitCount.get(unit.hashCode());
 				if(currentVisitCount > 3)
 				{
-					lhsSiCopy.print();
-					lhsSI.print();
+					//lhsSiCopy.print();
+					//lhsSI.print();
 					if(!lhsSiCopy.contains(lhsSI))
 					{
-						System.out.println("Applying widening :-");
+						//System.out.println("Applying widening :-");
 						lhsSI.widening(lhsSiCopy);
 					}
 					else
 					{
-						System.out.println("Applying narrowing :-");
+						//System.out.println("Applying narrowing :-");
 						lhsSI.narrowing(lhsSiCopy);
 					}
-					lhsSI.print();
+					//lhsSI.print();
 				}
 				
 				
@@ -409,7 +409,7 @@ public class StructuredWorklist
 			copy(intervalSet,out2);
 		}
 		
-		System.out.println("Result of :- "+unit.toString());
+		System.out.println("\nResult of Unit : "+unit.toString());
 		printAll(intervalSet);
 		System.out.println("$###############################$");
 	}
@@ -1007,6 +1007,6 @@ public class StructuredWorklist
 		{
 			((SimpleInterval)it.next()).print();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 }

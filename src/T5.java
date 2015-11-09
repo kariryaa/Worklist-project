@@ -1,16 +1,19 @@
 public class T5 {
 
-	public static void main(String[] args) 
-	{
-		int i=1,x1=0,x2=0,x3=0;
+	public static void main(String[] args) {
 		
-		while(i==1)
-		{	
-			x1 = x2;
-			x2 = x3 + 1;
-			x3 = x1;
+		int i,j;
+		// i: [UNKNOWN, UNKNOWN]
+		i=0;
+		// i: [0,10]
+		while( i < 10)
+		{
+			// i: [0,9]	
+			i = i+2;	
+			// i: [1,11]							
 		}
-		i=1;
+			
+		j=5;
+		// i: [10,10]	
 	}
 }
-

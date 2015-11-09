@@ -39,8 +39,9 @@ public class OldRoundRobinWithOldOperator
 	{
 		init(inUg);
 		phase = 1;
+		System.out.println("\n\n\n**********************WIDENING PHASE**********************\n\n");
 		doAnalysis(ug);
-		System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NARROWING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n\n");
+		System.out.println("\n\n\n**********************NARROWING PHASE**********************\n\n");
 		initNarrowing(ug);
 		phase = 2;
 		doAnalysis(ug);
@@ -156,11 +157,11 @@ public class OldRoundRobinWithOldOperator
 				
 				tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
 				
-				printAll(oldInteralSetIN);
+				//printAll(oldInteralSetIN);
 				
 				copy(tempIntervalSet,intervalSetIN);
 				
-				printAll(intervalSetIN);
+				//printAll(intervalSetIN);
 				
 				inMap.put(currentHashCode, intervalSetIN);
 				
@@ -272,10 +273,10 @@ public class OldRoundRobinWithOldOperator
 			{
 				replaceInterval1(SIarr[i],out1);
 			}
-			System.out.println("out1");
-			printAll(out1);
-			System.out.println("out2");
-			printAll(out2);
+			//System.out.println("out1");
+			//printAll(out1);
+			//System.out.println("out2");
+			//printAll(out2);
 		}
 		
 		if(unit instanceof AssignStmt)
@@ -303,7 +304,7 @@ public class OldRoundRobinWithOldOperator
 				String[] operands = getOperands(unitString,numop);
 				SimpleInterval temp;
 				
-				lhsSI.print();
+				//lhsSI.print();
 				
 				
 				switch(numop)
@@ -410,7 +411,7 @@ public class OldRoundRobinWithOldOperator
 			copy(intervalSet,out2);
 		}
 		
-		System.out.println("Result of :- "+unit.toString());
+		System.out.println("\nResult of Unit : "+unit.toString());
 		printAll(intervalSet);
 		System.out.println("$###############################$");
 	}
@@ -949,11 +950,12 @@ public class OldRoundRobinWithOldOperator
 
 	void printAll(List<SimpleInterval> s)
 	{
+		//System.out.println();
 		Iterator<SimpleInterval> it = s.iterator();
 		while(it.hasNext())
 		{
 			((SimpleInterval)it.next()).print();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 }

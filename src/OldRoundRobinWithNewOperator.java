@@ -40,11 +40,6 @@ public class OldRoundRobinWithNewOperator
 		init(inUg);
 		//phase = 1;
 		doAnalysis(ug);
-		/*System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NARROWING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n\n");
-		initNarrowing(ug);
-		phase = 2;
-		doAnalysis(ug);
-		*/
 	}
 	
 	void init(UnitGraph inUg)
@@ -157,11 +152,11 @@ public class OldRoundRobinWithNewOperator
 				
 				tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
 				
-				printAll(oldInteralSetIN);
+				//printAll(oldInteralSetIN);
 				
 				copy(tempIntervalSet,intervalSetIN);
 				
-				printAll(intervalSetIN);
+				//printAll(intervalSetIN);
 				
 				inMap.put(currentHashCode, intervalSetIN);
 				
@@ -273,10 +268,10 @@ public class OldRoundRobinWithNewOperator
 			{
 				replaceInterval1(SIarr[i],out1);
 			}
-			System.out.println("out1");
-			printAll(out1);
-			System.out.println("out2");
-			printAll(out2);
+			//System.out.println("out1");
+			//printAll(out1);
+			//System.out.println("out2");
+			//printAll(out2);
 		}
 		
 		if(unit instanceof AssignStmt)
@@ -304,7 +299,7 @@ public class OldRoundRobinWithNewOperator
 				String[] operands = getOperands(unitString,numop);
 				SimpleInterval temp;
 				
-				lhsSI.print();
+				//lhsSI.print();
 				
 				
 				switch(numop)
@@ -368,19 +363,19 @@ public class OldRoundRobinWithNewOperator
 				Integer currentVisitCount = visitCount.get(unit.hashCode());
 				if(currentVisitCount > 3)
 				{
-					lhsSiCopy.print();
-					lhsSI.print();
+					//lhsSiCopy.print();
+					//lhsSI.print();
 					if(!lhsSiCopy.contains(lhsSI))
 					{
-						System.out.println("Applying widening :-");
+						//System.out.println("Applying widening :-");
 						lhsSI.widening(lhsSiCopy);
 					}
 					else
 					{
-						System.out.println("Applying narrowing :-");
+						//System.out.println("Applying narrowing :-");
 						lhsSI.narrowing(lhsSiCopy);
 					}
-					lhsSI.print();
+					//lhsSI.print();
 				}
 				
 				/*
@@ -409,7 +404,7 @@ public class OldRoundRobinWithNewOperator
 			copy(intervalSet,out2);
 		}
 		
-		System.out.println("Result of :- "+unit.toString());
+		System.out.println("\nResult of Unit : "+unit.toString());
 		printAll(intervalSet);
 		System.out.println("$###############################$");
 	}
@@ -953,6 +948,6 @@ public class OldRoundRobinWithNewOperator
 		{
 			((SimpleInterval)it.next()).print();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 }

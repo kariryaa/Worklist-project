@@ -85,13 +85,14 @@ public class MyMain
 				
 				//This line does the complete Interval Domain analysis.
 				//new Test(ug);
-				//new Worklist(ug);
-				//new RoundRobin(ug);
-				//new StructuredWorklist(ug);
+				
+				
 				//new OldRoundRobinWithNewOperator(ug);
 				//new OldRoundRobinWithOldOperator(ug);
 				//new StructuredRoundRobin(ug);
 				//new OldWorklistWithNewOperator(ug);
+				new StructuredWorklist(ug);
+				//new OldWorklistWithOldOperator(ug);
 			}
 			
 		}			

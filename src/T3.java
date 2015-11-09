@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class T3 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		
 		int i,c,b;
 		// i: [UNKNOWN, UNKNOWN]
@@ -23,6 +24,5 @@ public class T3 {
 			// i: [3,102]
 		}
 		b=0;
-		// i: [100,102]
 	}
 }

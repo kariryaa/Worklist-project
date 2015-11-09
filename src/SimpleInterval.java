@@ -88,9 +88,26 @@ public class SimpleInterval
 	boolean	contains(SimpleInterval s)
 	{
 		//modify this to include cases for inf and ninf
+		boolean flag = true;
 		if(s.bottom)
 			return true;
-		return (this.l <= s.l && this.r >= s.r);		
+		if(bottom)
+			return false;
+		if(!inf)
+		{
+			if(s.inf)
+				flag = false;
+			else if(r < s.r)
+				flag = false;
+		}
+		if(!ninf)
+		{
+			if(s.ninf)
+				flag = false;
+			else if(l>s.l)
+				flag = false;
+		}
+		return flag;		
 	}
 	
 	boolean	isEqualTo(SimpleInterval s) 
@@ -203,9 +220,9 @@ public class SimpleInterval
 	}
 	void LT(SimpleInterval b)
 	{
-		System.out.println("\t\t\tIn LT!!!!!!!!!!!!!");
-		print();
-		b.print();
+		//System.out.println("\t\t\tIn LT!!!!!!!!!!!!!");
+		//print();
+		//b.print();
 		if(b.inf)
 			return;
 		if(inf)
@@ -506,6 +523,29 @@ public class SimpleInterval
 				ninf=false;
 			}
 		}
+	}
+	
+	boolean isGreater(SimpleInterval s)
+	{
+		if(s.bottom)
+			return true;
+		if(bottom)
+			return false;
+		if(!inf)
+		{
+			if(s.inf)
+				return false;
+			if(r > s.r)
+				return true;
+		}
+		if(!ninf)
+		{
+			if(s.ninf)
+				return false;
+			if(l < s.l)
+				return true;
+		}
+		return true;
 	}
 	
 }

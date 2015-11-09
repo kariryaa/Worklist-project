@@ -4,10 +4,10 @@ public class T3 {
 
 	public static void main(String[] args) {
 		
-		int i,a;
+		int i,c,b;
 		// i: [UNKNOWN, UNKNOWN]
 		i=200;
-		// i: [0,0]
+		// i: [200,200]
 		while( i > 100) 
 		{
 			// i: [0,99]	
@@ -16,13 +16,13 @@ public class T3 {
 			if (i < 20) 
 			{	
 				// i: [2,19]
-				a=1;
+				c=1;
 			}
 			
-			//i=i+1;
+			i=i+1;
 			// i: [3,102]
 		}
-		a=0;
+		b=0;
 		// i: [100,102]
 	}
 }

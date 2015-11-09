@@ -84,8 +84,14 @@ public class MyMain
 				System.out.println(m.get(j)+"\n");				
 				
 				//This line does the complete Interval Domain analysis.
-				obj=new Worklist(ug);
 				//new Test(ug);
+				//new Worklist(ug);
+				//new RoundRobin(ug);
+				//new StructuredWorklist(ug);
+				//new OldRoundRobinWithNewOperator(ug);
+				//new OldRoundRobinWithOldOperator(ug);
+				
+				
 			}
 			
 		}			

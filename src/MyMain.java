@@ -90,8 +90,8 @@ public class MyMain
 				//new StructuredWorklist(ug);
 				//new OldRoundRobinWithNewOperator(ug);
 				//new OldRoundRobinWithOldOperator(ug);
-				
-				
+				//new StructuredRoundRobin(ug);
+				//new OldWorklistWithNewOperator(ug);
 			}
 			
 		}			

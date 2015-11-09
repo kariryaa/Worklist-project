@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,9 +18,9 @@ import soot.toolkits.scalar.ArraySparseSet;
 import soot.toolkits.scalar.FlowSet;
 
 
-public class StructuredRoundRobin 
+public class OldWorklistWithOldOperator
 {
-	//int phase;	//other-Nothing,	1-Widening,		2-narrowing
+	int phase;	//other-Nothing,	1-Widening,		2-narrowing
 	
 	Map<Integer, Integer> visitCount;
 	Map<Integer, Integer> indexMap;
@@ -35,16 +34,15 @@ public class StructuredRoundRobin
 	
 	UnitGraph ug;
 	
-	public StructuredRoundRobin(UnitGraph inUg)
+	public OldWorklistWithOldOperator(UnitGraph inUg)
 	{
 		init(inUg);
-		//phase = 1;
+		phase = 1;
 		doAnalysis(ug);
-		/*System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NARROWING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n\n");
+		System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!NARROWING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n\n");
 		initNarrowing(ug);
 		phase = 2;
 		doAnalysis(ug);
-		*/
 	}
 	
 	void init(UnitGraph inUg)
@@ -128,71 +126,80 @@ public class StructuredRoundRobin
 	
 	void doAnalysis(UnitGraph ug)
 	{
-		int n = worklist.size()-1;
-		solve(n-1);
-	}
-	
-	void solve(int i)
-	{
-		/*
-		void solve i 
+		
+		while(!worklist.isEmpty())
 		{
-			if (i = 0) 
-				return;
-			solve (i − 1);
-			new ← ρ[x i ] f i ρ;
-			if (ρ[x i ] = new ) 
+			Iterator<Integer> worklistIterator = worklist.iterator();
+			Integer currentHashCode = worklistIterator.next();
+			worklist.remove(currentHashCode);
+			currentHashCode = hashCodeMap.get(currentHashCode);
+			
+			visitCount.put(currentHashCode, visitCount.get(currentHashCode)+1);
+			Unit currentUnit = unitMap.get(currentHashCode);
+			List <SimpleInterval> intervalSetIN;
+			List <SimpleInterval> intervalSetOut1;
+			List <SimpleInterval> intervalSetOut2;
+			List <SimpleInterval> tempIntervalSet;
+			List <SimpleInterval> oldInteralSetIN = new ArrayList <SimpleInterval> (0);
+			
+			intervalSetIN = inMap.get(currentHashCode);
+			intervalSetOut1 = out1Map.get(currentHashCode);
+			intervalSetOut2 = out2Map.get(currentHashCode);
+			
+			copy(intervalSetIN,oldInteralSetIN);
+			
+			
+			tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
+			
+			printAll(oldInteralSetIN);
+			
+			copy(tempIntervalSet,intervalSetIN);
+			
+			printAll(intervalSetIN);
+			
+			inMap.put(currentHashCode, intervalSetIN);
+			
+			if(!isEqual(intervalSetIN,oldInteralSetIN))
 			{
-				ρ[x i ] ← new ;
-				solve i;
+				//System.out.println("Old and new!!! of "+currentUnit.toString());
+				//printAll(oldInteralSetIN);
+				//printAll(intervalSetIN);
+				
+				List<Unit> children = ug.getSuccsOf(currentUnit);
+				Iterator<Unit> childrenIterator = children.iterator();
+				while(childrenIterator.hasNext())
+				{
+					worklist.add(indexMap.get(childrenIterator.next().hashCode()));
+				}
+				//put children of currentUnit in the worklist stack
 			}
+			
+			//printAll(intervalSetIN);
+			copy(intervalSetIN, oldInteralSetIN);
+			
+			flowThrough(intervalSetIN, currentUnit, intervalSetOut1, intervalSetOut2);
+			inMap.put(currentHashCode, oldInteralSetIN);
+			out1Map.put(currentHashCode, intervalSetOut1);
+			out2Map.put(currentHashCode, intervalSetOut2);
 		}
+		
+		/*
+		// main cycle
+		while not empty(worklist) do
+		     x = extract(worklist)
+		     old = in(x)
+		     if FORWARD
+		          new = MEET(all p in fathers(n)) (TRASF(in(p))) 
+		          if old <> new 
+		               for every f in children(n): insert(f, worklist); 
+		               in(n) = new
+		     else 
+		          new = MEET(all p in children(n)) (TRASF(in(p))) 
+		          if old <> new 
+		               for every f in fathers(n): insert(f, worklist); 
+		               in(n) = new   
+		enddo
 		*/
-		if(i==-1)
-			return;
-		solve(i-1);
-		
-			
-			
-		Integer currentHashCode = hashCodeMap.get(i);
-		
-		visitCount.put(currentHashCode, visitCount.get(currentHashCode)+1);
-		Unit currentUnit = unitMap.get(currentHashCode);
-		List <SimpleInterval> intervalSetIN;
-		List <SimpleInterval> intervalSetOut1;
-		List <SimpleInterval> intervalSetOut2;
-		List <SimpleInterval> tempIntervalSet;
-		List <SimpleInterval> oldInteralSetIN = new ArrayList <SimpleInterval> (0);
-		
-		intervalSetIN = inMap.get(currentHashCode);
-		intervalSetOut1 = out1Map.get(currentHashCode);
-		intervalSetOut2 = out2Map.get(currentHashCode);
-		
-		copy(intervalSetIN,oldInteralSetIN);
-		
-		
-		tempIntervalSet = computeInSet(currentUnit,intervalSetIN);			
-		
-		printAll(oldInteralSetIN);
-		
-		copy(tempIntervalSet,intervalSetIN);
-		
-		printAll(intervalSetIN);
-		
-		inMap.put(currentHashCode, intervalSetIN);
-		
-		if(!isEqual(intervalSetIN,oldInteralSetIN))
-		{
-			solve(i);
-		}
-		
-		//printAll(intervalSetIN);
-		copy(intervalSetIN, oldInteralSetIN);
-		
-		flowThrough(intervalSetIN, currentUnit, intervalSetOut1, intervalSetOut2);
-		inMap.put(currentHashCode, oldInteralSetIN);
-		out1Map.put(currentHashCode, intervalSetOut1);
-		out2Map.put(currentHashCode, intervalSetOut2);	
 	}
 	
 	protected void flowThrough(List<SimpleInterval> intervalSet, Unit unit,
@@ -349,28 +356,9 @@ public class StructuredRoundRobin
 				}
 				
 				Integer currentVisitCount = visitCount.get(unit.hashCode());
-				if(currentVisitCount > 3)
-				{
-					//lhsSiCopy.print();
-					//lhsSI.print();
-					if(!lhsSiCopy.contains(lhsSI))
-					{
-						//System.out.println("Applying widening :-");
-						lhsSI.widening(lhsSiCopy);
-					}
-					else
-					{
-						//System.out.println("Applying narrowing :-");
-						lhsSI.narrowing(lhsSiCopy);
-					}
-					//lhsSI.print();
-				}
-				
-				/*
-				Integer currentVisitCount = visitCount.get(unit.hashCode());
 				if(phase==1)
 				{
-					if(currentVisitCount==3)
+					if(currentVisitCount>=3)
 					{
 						lhsSI.widening(lhsSiCopy);
 					}
@@ -386,7 +374,6 @@ public class StructuredRoundRobin
 						System.out.println("Narrowing applied...........");
 					}
 				}
-				*/
 			}
 			copy(intervalSet,out1);
 			copy(intervalSet,out2);
@@ -436,7 +423,7 @@ public class StructuredRoundRobin
 		{
 			if(!isIfUnit(unit))
 			{
-				if(visitCount.get(unit.hashCode())==1)// && phase ==1)
+				if(visitCount.get(unit.hashCode())==1 && phase ==1)
 				{
 					List<Unit> parentsList = ug.getPredsOf(unit);
 					Integer minIndex = indexMap.get(parentsList.get(0).hashCode());

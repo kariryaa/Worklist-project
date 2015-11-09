@@ -358,7 +358,7 @@ public class Worklist
 				Integer currentVisitCount = visitCount.get(unit.hashCode());
 				if(phase==1)
 				{
-					if(currentVisitCount==3)
+					if(currentVisitCount>=3)
 					{
 						lhsSI.widening(lhsSiCopy);
 					}
